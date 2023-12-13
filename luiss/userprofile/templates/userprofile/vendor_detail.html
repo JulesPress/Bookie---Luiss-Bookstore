@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+
+
+{% block content %}
+<section class="m-5">
+
+  <h2 class="m-5 text-center">{% firstof user.username %}</h2>
+    <hr>
+    <p> <strong>email:  </strong>{{ user.email }}</p>
+
+    <p><strong>Facebook:  </strong>{{ user.profile.Facebook }}</p>
+
+    <p><strong>Instagram:  </strong>{{ user.profile.Instagram }}</p>
+
+    <p><strong>Twitter:  </strong>{{ user.profile.Twitter }}</p>
+
+    <p><strong>Bio:  </strong>{{ user.profile.bio }}</p>
+
+</section>
+{% if user.products %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for product in user.products.all %}
+        {% if product.image %}
+
+
+<div class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;">
+  <img src="{{ product.image.url }}" class="rounded mx-auto d-block m-3" width="171" height="171" alt="Image of {{ product.title }}">
+        {% endif %}
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.title }}</h5>
+      <h5 class="card-title">{{ product.price }} €</h5>
+    <a href="/core/single_book/{{product.pk}}" class="btn btn-primary">View Book</a>
+  </div>
+</div>
+
+
+      {% endfor %}
+      </div>
+
+{% else %}
+  <p class="items text-center">This user doesn't have books yet...</p>
+{% endif %}
+{% endblock %}

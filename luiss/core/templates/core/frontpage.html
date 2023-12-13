@@ -1,0 +1,44 @@
+
+{% extends "core/base.html" %}
+
+{% block content %}
+  <section>
+      <figure class="text-center m-5">
+          <h2>Welcome!</h2>
+    <p>Here you can find <strong>new arrivals</strong>! find the book that you need through the <strong>luiss network...</strong></p>
+      </figure>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for product in products %}
+        {% if product.image %}
+
+
+<div class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;">
+  <img src="{{ product.image.url }}" class="rounded mx-auto d-block m-3" width="171" height="171" alt="...">
+        {% endif %}
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.title }}</h5>
+      <h5 class="card-title">{{ product.price }} €</h5>
+    <a href="{% url 'vendor_detail' product.user.id %}" class="card-text">-{{ product.user.username }}-</a><br>
+    <a href="/core/single_book/{{product.pk}}" class="btn btn-primary">View Book</a>
+  </div>
+</div>
+
+      {% endfor %}
+      </div>
+  <hr>
+      <div class="text-center m-5">
+          <h2>Categories</h2>
+      <p>Need to dive in more specific? ...</p>
+      </div>
+
+  {% for category in categories %}
+        <div class="text-center m-5">
+          <h3>{{ category.title }}</h3>
+            <a href="/core/category/{{ category.pk }}" class="btn btn-primary">View Category</a>
+
+        </div>
+      {% endfor %}
+
+</section>
+{% endblock %}

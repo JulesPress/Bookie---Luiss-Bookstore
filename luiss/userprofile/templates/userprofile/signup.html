@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+ <h1 class="m-5 text-center">Sign up</h1>
+<form class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;" method="post" action="." id="signup">
+ {% csrf_token %}
+
+ {{ form.as_p }}
+
+ <button class="button">Sign up</button>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+
+{% extends "core/base.html" %}
+
+{% block content %}
+<section>
+      <div class="text-center m-5">
+          <h2>Categories</h2>
+      <p>Need to dive in more specific? ...</p>
+      </div>
+
+  {% for category in categories %}
+        <div class="text-center m-5">
+          <h3>{{ category.title }}</h3>
+            <a href="/core/category/{{ category.pk }}" class="btn btn-primary">View Category</a>
+
+        </div>
+      {% endfor %}
+</section>
+{% endblock %}

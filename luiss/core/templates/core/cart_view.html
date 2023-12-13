@@ -1,0 +1,40 @@
+
+{% extends "core/base.html" %}
+
+{% block content %}
+  <section class="text-center m-5">
+    <h2>Cart</h2>
+    {% if cart|length %}
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for item in cart %}
+        {% if item.product.image %}
+
+
+<div class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;">
+  <img src="{{ item.product.image.url }}" class="rounded mx-auto d-block m-3" width="171" height="171" alt="Image of {{ item.product.title }}">
+        {% endif %}
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ item.product.title }}</h5>
+      <h5 class="card-title">{{ item.product.price }} €</h5>
+    <a href="#" class="card-text">-{{ item.product.user.username }}-</a><br>
+      <div>
+            <a href="{% url 'change_quantity' item.product.id %}?action=increase" class="btn btn-primary m-2">+</a>
+            {{ item.quantity }}
+            <a href="{% url 'change_quantity' item.product.id %}?action=decrease" class="btn btn-primary m-2">-</a>
+         </div>
+    <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-primary">Remove</a>
+  </div>
+</div>
+
+
+      {% endfor %}
+      </div>
+
+    <br>
+    <hr class="mt-4 mb-4">
+    <strong>Total cost: </strong>{{ cart.get_total_cost }} €
+    <hr class="mt-4 mb-4">
+    {% else %}
+           <p>The Cart is empty... fill it with something wonderful!</p>
+      {% endif %}
+{% endblock %}

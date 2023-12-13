@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <section class = "text-center m-5">
+    <h2>{{ product.title }}</h2>
+      {% if product.image %}
+            <img src="{{ product.image.url }}" width="500" height="570" alt="Image of {{ product.title }}">
+          {% endif %}
+
+
+      <div class="card text-center">
+  <div class="card-header">
+    Description
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <h2>Cost:</h2>
+        <strong> <h4>{{ product.price }} € </h4></strong>
+      <a href="{% url 'vendor_detail' product.user.id %}"><strong>{{ product.user.username }}</strong></a>
+    <p class="card-text">{{ product.description }}</p>
+      <a class="btn btn-primary" href="/core/books/">View all books</a>
+    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+  </div>
+  <div class="card-footer text-body-secondary">
+   {% if updated_at %}
+   {{ product.updated_at }}
+   {% else %}
+      {{ product.created_at }}
+   {% endif %}
+  </div>
+</div>
+  </section>
+{% endblock %}
+
+

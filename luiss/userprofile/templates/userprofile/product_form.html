@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %} My Store {% endblock %}
+
+{% block content %}
+<div class="mb-3">
+  <h1 class="item text-center m-4">{{ title }}</h1>
+<section class="card m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 40rem;">
+  <form class="form-control" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="button">Submit</button>
+  </form>
+
+{% if title == 'Edit Product'  %}
+<br>
+  <a class="button" href="{% url 'delete_product' product.id %}">Delete Book</a>
+
+{% endif %}
+</section>
+</div>
+
+{% endblock %}

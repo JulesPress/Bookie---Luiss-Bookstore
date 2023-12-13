@@ -1,0 +1,42 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+  <section>
+    <h2 class="m-5 text-center">Search</h2>
+    <h3 class="text-center">Search results for "{{ query }}"</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for product in products %}
+        {% if product.image %}
+
+
+<div class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;">
+  <img src="{{ product.image.url }}" class="rounded mx-auto d-block m-3" width="171" height="171" alt="Image of {{ product.title }}">
+        {% endif %}
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.title }}</h5>
+      <h5 class="card-title">{{ product.price }} €</h5>
+    <a href="{% url 'vendor_detail' product.user.id %}" class="card-text">-{{ product.user.username }}-</a><br>
+    <a href="/core/single_book/{{product.pk}}" class="btn btn-primary">View Book</a>
+  </div>
+</div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
+
+  {% for product in products %}
+        {% if product.image %}
+
+
+<div class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem;">
+  <img src="{{ product.image.url }}" class="rounded mx-auto d-block m-3" width="171" height="171" alt="Image of {{ product.title }}">
+        {% endif %}
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.title }}</h5>
+      <h5 class="card-title">{{ product.price }} €</h5>
+    <a href="{% url 'vendor_detail' product.user.id %}" class="card-text">-{{ product.user.username }}-</a><br>
+    <a href="/core/single_book/{{product.pk}}" class="btn btn-primary">View Book</a>
+  </div>
+</div>
+
+      {% endfor %}

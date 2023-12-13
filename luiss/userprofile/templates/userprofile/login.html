@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+ <h1 class="m-5 text-center">Log in</h1>
+<form class="card col m-5 shadow p-3 mb-5 bg-body-tertiary rounded text-center" method="post" action=".">
+ {% csrf_token %}
+
+ {{ form.as_p }}
+
+ <button class="button">Log in</button>
+</form>
+{% endblock %}
